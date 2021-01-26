@@ -1,0 +1,15 @@
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+source leaprc.gaff
+loadamberparams HEM.frcmod
+loadoff HEM.lib
+complex = loadpdb WT_noH.pdb
+check complex
+bond complex.420.SG complex.479.FE   #420 represents the CYS number that binds to HEM coordination.479 represents the number of the HEM.
+complex1 = copy complex
+solvatebox complex1 TIP3PBOX 12.0
+addions2 complex1 Na+ 0
+addions2 complex1 Cl- 0
+saveamberparm complex1 WT_box.prmtop WT_box.inpcrd
+savepdb complex1 WT_box.pdb
+quit

@@ -1,0 +1,20 @@
+initial minimization solvent + ions
+ &cntrl
+  imin   = 1,
+  maxcyc = 2000,
+  ncyc   = 1000,
+  ntb    = 1,
+  ntpr   = 100,
+  ntr    = 1,
+  restraintmask = ':1-478',
+  restraint_wt  = 50.0,
+  cut    = 8.0
+ /
+
+# imin: Flag to run minimization. 0, Run MD without any minimization 1, Perform an energy minimization, 5, Read in a trajectory for analysis
+# ncyc: 1-ncyc, steepest desent
+# maxcyc: cyc-maxcyc, conjugate gradient
+# ntb : Periodic boundaries: 0, no periodicity 1, constant volume 2, constant pressure(default when ntp>0)
+# ntpr: Every ntpr steps, energy inforfation will be printed in human-readable form to files 'mdout' 'mdinfo', Default = 50
+# ntr : ntr>0 restrain specified atoms: restraintmask & restraint_wt Default = 0
+# cut : nonbonded cutoff, in Angstroms

@@ -1,0 +1,33 @@
+explicit solvent equilibration: 500ps
+ &cntrl
+  imin=0,
+  irest=1,
+  ntx=5,
+  nstlim=250000, dt=0.002,
+  ntc=2, ntf=2,
+  cut=8.0, ntb=2, ntp=1, taup=2.0,
+  ntpr=500, ntwx=500,
+  ntt=3, gamma_ln=2.0,
+  temp0=300.0, ig=-1,
+  ntr=1,
+  restraintmask=':1-475@CA,C,O,N',
+  restraint_wt=10.0,
+  iwrap=1
+  /
+
+# imin : Flag to run minimization. 0, Run MD without any minimization 1, Perform an energy minimization, 5, Read in a trajectory for analysis
+# irest: Flag to restart a simulation. 0, (default) Do not restart the simulation, run as a new simulation 1, restart the simulation, reading coordinates and velocities from a previously saved restart file. if irest=1, ntx must be 4 or higher
+# ntx  : Option to read the initial coordinates, velocities and box size from the inpcrd file. 1, (default) Coordinates, but no velocities 5, Coordinates and velocities
+# nstlim and dt: time step: 0.002 (2fs), nstlim: number of MD-steps to be performed
+# ntc  : Flag for SHAKE to perform bond length constraints. 1, SHAKE is not performed (default) 2, bonds involving hydrogen are constrained 3, all bons are constrained
+# ntf  : Force evaluation. 1, complete interaction is calculated (default) 2, bond interactions involving H-atoms omitted (use with ntc=2) ...
+# cut  : nonbonded cutoff, in Angstroms
+# ntb  : Periodic boundaries: 0, no periodicity 1, constant volume 2, constant pressure (default when ntp>0)
+# ntp  : Flag for constant presure dynamics. This option should be set to 1 or 2 when Constant Pressure periodic boundary conditions are used. 0, no pressure scaling(Default) 1, MD with isotropic position scaling 2, with anisotropic pressure scaling 3, with semiisotropic pressure scaling
+# taup : Pressure relaxation time (in ps). The recommended value is between 1.0 (default) and 5.0 psec
+# ntpr : Every ntpr steps, energy inforfation will be printed in human-readable form to files 'mdout' 'mdinfo', Default 50
+# ntwx : Every ntwx steps, the velocities will be written to the mdvel file, default = 0, no velocity trajectory file will be written
+# ntt  : Switch for temperature scaling. 3, Langevin dynamics with the collision frequency ¦Ã given by gamma_ln
+# tempi: Initial temperature temp0: reference temperature at which the system is to be kept
+# ig   : The seed for the pseudo-random number generator, ig = -1 recommend for all runs involving ntt = 2 or 3
+# iwrap: If iwrap=1, the coordinates written to the restart and trajectory files will be 'wrapped' into a primary box. 0, no wrapping will be performed (default)
